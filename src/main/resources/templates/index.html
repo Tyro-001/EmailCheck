@@ -19,39 +19,74 @@
         .letter{
             margin: auto;
             text-align: center;
+            margin-top: 30px;
         }
-        .form{
+        span.glyphicon{
+            display: inline-block;
+            margin-top: 30px;
+        }
+        .formOut{
             text-align: center;
             align-content: center;
-            width: 300px;
+            width: 400px;
             height: 500px;
             margin: auto;
-            border: snow ;
+            margin-top: 100px;
+            border: 3px solid #8d8787 ;
+            background-color: snow;
+            background-color: rgb(232,238,241,0.8);
+        }
+        .form{
+            margin-top: 40px;
+        }
+        .button{
+            margin-top: 50px;
+        }
+        .button-fir{
+            margin-right: 25px;
+        }
+        .button-sec{
+            margin-left: 25px;
+        }
+        .form-control{
+            width: 60%;
+            margin-left: 80px;
+        }
+        .author{
+            margin-top: 35px;
+            margin-right: -200px;
         }
     </style>
 
 </head>
 <body>
 
-<br/>
-<h1 class="letter"> <span class="glyphicon glyphicon-envelope text-center" ></span></h1>
-<br/>
 
-<form action="#" method="post" class="formOut">
+<div class="formOut">
+<h1 class="letter"> <span class="glyphicon glyphicon-envelope text-center" ></span></h1>
+
+
+<form action="#" method="post">
     <div class="form">
     <div class="form-group">
         <label for="exampleInputEmail1">邮箱</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="邮箱">
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="邮箱" required>
     </div>
+        <br/><br/>
     <div class="form-group">
         <label for="exampleInputPassword1">验证码</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="checkNum" placeholder="验证码">
+        <input type="text" class="form-control" id="exampleInputPassword1" name="checkNum" placeholder="验证码" required>
     </div>
-    <button type="submit" class="btn btn-default">验证</button>
-    <button type="reset" class="btn btn-default">重置</button>
-    </div>
-</form>
 
+    <div class="button">
+        <span class="button-fir"><button type="submit" class="btn btn-default">验证</button></span>
+        <span class="button-sec"><button type="reset" class="btn btn-default">重置</button></span>
+    </div>
+    </div>
+
+    <div class="author">(author: -- Jin) </div>
+</form>
+</div>
 
 
 </body>
