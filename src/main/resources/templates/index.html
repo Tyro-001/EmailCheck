@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>邮箱验证</title>
     <link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap-theme.css">
@@ -56,6 +57,16 @@
             margin-top: 35px;
             margin-right: -200px;
         }
+        #exampleInputPassword1{
+            width: 30%;
+            display: inline-block;
+            margin-left: -10px;
+            margin-right: 10px;
+        }
+        .yan{
+            display: block;
+        }
+
     </style>
 
 </head>
@@ -66,16 +77,19 @@
 <h1 class="letter"> <span class="glyphicon glyphicon-envelope text-center" ></span></h1>
 
 
-<form action="#" method="post">
+<form th:action="@{/check}" method="post">
     <div class="form">
     <div class="form-group">
         <label for="exampleInputEmail1">邮箱</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="邮箱" required>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="userEmail" placeholder="邮箱" required>
     </div>
         <br/><br/>
     <div class="form-group">
-        <label for="exampleInputPassword1">验证码</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="checkNum" placeholder="验证码" required>
+        <label for="exampleInputPassword1" class="yan">验证码</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="userNum" placeholder="验证码" required>
+        <a th:href="@{/gets}"><button class="btn btn-default get">获取验证码</button></a>
+        <!--如果正确即msg为null，否则msg不为空-->
+        <label style="color: red" th:text="${msg}" th:value="${msg}" th:if="${not #strings.isEmpty(msg)}" class="hidden"></label>
     </div>
 
     <div class="button">
@@ -87,6 +101,23 @@
     <div class="author">(author: -- Jin) </div>
 </form>
 </div>
+
+<script>
+
+    $(function (){
+        $(".button-fir").click(function (){
+            let info = $(".hidden").val();
+            alert(info);
+        })
+    })
+
+    $(function (){
+        $(".get").click(function (){
+            $(this).val("已发送");
+            $(this).css("color: grey");
+        })
+    })
+</script>
 
 
 </body>
