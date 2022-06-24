@@ -2,11 +2,11 @@ package com.Jin.Dao;
 
 import com.Jin.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,23 +49,18 @@ public class MessageDaoImpl implements MessageDao{
         helper.setFrom("2465010243@qq.com");
 
         mailSender.send(mimeMailMessage);
-        System.out.println(nums);
+        System.out.println("验证码："+nums);
     }
 
     //效验验证码
     @Override
     public boolean checkMessage(@RequestParam("userNum") String userNum) {
 
-        if(userNum!=null){
-
-            if (userNum == nums ){
-                return true;
-            }else {
-                return false;
-            }
-
+        if (Integer.parseInt(userNum) == Integer.parseInt(nums) ){
+            return true;
+        }else {
+            return false;
         }
-        return false;
 
     }
 }
