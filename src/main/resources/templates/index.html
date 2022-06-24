@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>邮箱验证</title>
-    <link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="../static/bootstrap-3.3.7/js/jquery-3.6.0.js">
-    <link rel="stylesheet" href="../static/bootstrap-3.3.7/js/bootstrap.js">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap-theme.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/js/jquery-3.6.0.js}">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/js/bootstrap.js}">
 
     <style>
         body:not(.formOut){
-            background-image: url(../static/img/yuanshen.png);
+            background-image: url(/img/yuanshen.png);
             background-size: 1920px 900px;
             opacity: initial;
             background-repeat: no-repeat;
@@ -77,19 +77,19 @@
 <h1 class="letter"> <span class="glyphicon glyphicon-envelope text-center" ></span></h1>
 
 
-<form th:action="@{/check}" method="post">
+<form class="form-signin" th:action="@{/gets}" th:method="post">
     <div class="form">
     <div class="form-group">
         <label for="exampleInputEmail1">邮箱</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" name="userEmail" placeholder="邮箱" required>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="userEmail" th:placeholder="邮箱" th:value="${userEmail}" required>
     </div>
         <br/><br/>
     <div class="form-group">
         <label for="exampleInputPassword1" class="yan">验证码</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="userNum" placeholder="验证码" required>
-        <a th:href="@{/gets}"><button class="btn btn-default get">获取验证码</button></a>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="userNum" th:placeholder="验证码">
+        <a th:href="@{#}" target="_blank"></a><button type="submit" class="btn btn-default get">获取验证码</button>
         <!--如果正确即msg为null，否则msg不为空-->
-        <label style="color: red" th:text="${msg}" th:value="${msg}" th:if="${not #strings.isEmpty(msg)}" class="hidden"></label>
+        <label style="color: red" th:text="${msg}" th:value="${msg}" th:if="${not #strings.isEmpty(msg)}" class="hiddens"></label>
     </div>
 
     <div class="button">
@@ -104,19 +104,27 @@
 
 <script>
 
-    $(function (){
-        $(".button-fir").click(function (){
-            let info = $(".hidden").val();
-            alert(info);
-        })
-    })
+    // $(function (){
+    //     $(".get").click(function (){
+    //         $(".form-signin").style.action = "@{/check}";
+    //     })
+    // })
 
-    $(function (){
-        $(".get").click(function (){
-            $(this).val("已发送");
-            $(this).css("color: grey");
-        })
-    })
+    // $(function (){
+    //     $('.get').click(function (){
+    //         $('.get').textContent = "已发送";
+    //         // $('.get').text("已发送");
+    //         $('.get').style.color = "grey";
+    //     })
+    // })
+
+    // $(function (){
+    //     $(".button-fir").click(function (){
+    //         let info = $(".hiddens").val();
+    //         alert(info);
+    //     })
+    // })
+
 </script>
 
 

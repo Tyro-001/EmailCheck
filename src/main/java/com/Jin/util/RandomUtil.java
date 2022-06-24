@@ -22,6 +22,7 @@ public class RandomUtil {
     }
 
     public String getNum(){
+        Num = MakeNum();
         return Num;
     }
 

@@ -1,30 +1,35 @@
 package com.Jin.Dao;
 
 import com.Jin.util.RandomUtil;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-@Component
+
+@Repository
+@Service
 public class MessageDaoImpl implements MessageDao{
 
 
     static RandomUtil random = new RandomUtil();    //随机数工具
     static String nums = random.getNum();       //获取随机数验证码
 
+
     @Autowired
     JavaMailSenderImpl mailSender;
 
     //获取验证码
     @Override
+    @Async      //异步方法
     public void getMessage(@RequestParam("userEmail")String userEmail)  throws MessagingException {
         //复杂邮件
         MimeMessage mimeMailMessage = mailSender.createMimeMessage();
@@ -44,6 +49,7 @@ public class MessageDaoImpl implements MessageDao{
         helper.setFrom("2465010243@qq.com");
 
         mailSender.send(mimeMailMessage);
+        System.out.println(nums);
     }
 
     //效验验证码
