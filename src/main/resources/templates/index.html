@@ -8,13 +8,15 @@
     <link rel="stylesheet" th:href="@{/bootstrap-3.3.7/css/bootstrap-theme.css}">
     <script  th:src="@{/bootstrap-3.3.7/js/jquery-3.6.0.js}"></script>
     <script  th:src="@{/bootstrap-3.3.7/js/bootstrap.js}"></script>
+	<link rel="icon" href="https://hello-cloudbase-8gjiov0o2c938771-1305027038.tcloudbaseapp.com/EmailCheck/src/main/resources/static/1.ico"/>
 
 <!--    <link rel="script" th:href="@{/bootstrap-3.3.7/js/jquery-3.6.0.js}">-->
 <!--    <link rel="script" th:href="@{/bootstrap-3.3.7/js/bootstrap.js}">-->
 
+
     <style>
         body:not(.formOut){
-            background-image: url(/img/yuanshen.png);
+            background-image: url(https://hello-cloudbase-8gjiov0o2c938771-1305027038.tcloudbaseapp.com/EmailCheck/src/main/resources/static/img/yuanshen-3-0.jpg);
             background-size: 1920px 900px;
             opacity: initial;
             background-repeat: no-repeat;
@@ -80,7 +82,7 @@
 <h1 class="letter"> <span class="glyphicon glyphicon-envelope text-center" ></span></h1>
 
 
-<form class="form-signin" th:action="@{/gets}" th:method="post">
+<form class="form-signin" th:action="@{/gets}" th:method="post" >
     <div class="form">
     <div class="form-group">
         <label for="exampleInputEmail1">邮箱</label>
@@ -109,21 +111,53 @@
 
     $(function (){
         $('.get').click(function (){
+	var input1=document.getElementById('exampleInputEmail1');
+	if(input1.value==''){
+	  alert("请输入邮箱，并输入正确的邮箱地址！");
+	}else if(input1.value.indexOf("@") == -1){
+	  alert("邮箱格式错误！"); 
+	}else{
+            alert("已发送，请等待十秒钟接收，服务配置低，请谅解！(-_-)");
+            // $('.get').textContent = "已发送";
+            $('.get').text("已发送");
+            $('.get').style.color = "grey";
+	} 
+        })
+
+	$('#check').click(function(){
+	var input2=document.getElementById('exampleInputPassword1');
+	if(input2.value==''){
+	   alert("由于未输入验证码，已为您重新发送！");
+	  }
+	})
+    })
+
+
+/*
+	function aaa(){
+	var input2=document.getElementById('exampleInputPassword1');
+	if(input2.value==''){
+	   alert("请输入验证码！");
+	   return false;
+	}else
+	   reutrn true;
+	}
+
+    $(function (){
+        $('.get').click(function (){
+	var input1=document.getElementById('exampleInputEmail1');
+	if(input1.value!=''){
             alert("已发送，请等待十秒钟接收，服务配置低，请谅解！(-_-)")
             // $('.get').textContent = "已发送";
             $('.get').text("已发送");
             $('.get').style.color = "grey";
+	}else if(input1.value ){
+	  alert("请输入邮箱，并输入正确的邮箱地址！");
+	}else 
         })
     })
 
-    // $(function (){
-    //     $(".button-fir").click(function (){
-    //         let info = $(".hiddens").text();
-    //         if (info!=null){
-    //             alert(info);
-    //         }
-    //     })
-    // })
+*/
 
 </script>
 

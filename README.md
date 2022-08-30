@@ -36,4 +36,13 @@
 5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
 6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
 
-# 無内容.....................
+# 一、更新
+
+## 1、验证码随机
+
+```tcl
+由于验证码是用static创建的，不会刷新，因此需要将其修改
+1、首先，可以将相关的bean，搞成非单例模式，scope="prototype"
+2、然后，想办法将此变量让其他类访问到
+```
+
